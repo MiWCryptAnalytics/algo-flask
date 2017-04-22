@@ -1,0 +1,53 @@
+<!-- extend from base layout -->
+{% extends "base.html" %}
+
+{% macro render_field(field) %}
+  <dt><pre>{{ field.label }}</pre>
+  <dd>{{ field(**kwargs)|safe }}
+  {% if field.errors %}
+    <ul class=errors>
+    {% for error in field.errors %}
+      <li>{{ error }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+  </dd>
+{% endmacro %}
+
+{% block content %}
+  <h1>Algo VPN Factory</h1>
+<div class="container-fluid">
+{% if form.errors %}
+    <ul class="errors">
+        {% for field_name, field_errors in form.errors|dictsort if field_errors %}
+            {% for error in field_errors %}
+                <li>{{ form[field_name].label }}: {{ error }}</li>
+            {% endfor %}
+        {% endfor %}
+    </ul>
+{% endif %}
+  <form action="/algo" method="POST" name="algo">
+      {% for field in form %}
+      <p>
+          {% if field.radio %}
+            {% for subfield in form.radio %}
+    <tr>
+        <td>{{ subfield }}</td>
+        <td>{{ subfield.label }}</td>
+    </tr>
+{% endfor %}
+          {% elif field.name != 'csrf_token' %}
+    {{ render_field(field) }}
+          {% endif %}
+      </p>
+    {% endfor %}
+
+      {{ form.hidden_tag() }}
+
+      <p>
+
+      </p>
+      <p><input type="submit" value="Do It"></p>
+  </form>
+</div>
+{%  endblock %}

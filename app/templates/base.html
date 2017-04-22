@@ -1,0 +1,24 @@
+<html>
+  <head>
+    {% extends "bootstrap/base.html" %}
+    {% if title %}
+    <title>{{ title }} - VPN Factory</title>
+    {% else %}
+    <title>VPN Factory</title>
+    {% endif %}
+  </head>
+  <body>
+    <div>VPN Factory: <a href="/index">Home</a></div>
+    <hr>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul>
+        {% for message in messages %}
+            <li>{{ message }} </li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+  </body>
+</html>
