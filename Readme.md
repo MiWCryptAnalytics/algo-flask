@@ -15,7 +15,7 @@ Routes defined:
 
 return ("Algo VPN Cloud Factory")
 
-
+```
 @app.route('/algo', methods=['GET', 'POST'])
 @app.route('/roles', methods=['GET', 'POST'])
 @app.route('/do', methods=['GET', 'POST'])
@@ -24,7 +24,7 @@ return ("Algo VPN Cloud Factory")
 @app.route('/gce', methods=['GET', 'POST'])
 @app.route('/noncloud', methods=['GET', 'POST'])
 @app.route('/user', methods=['GET', 'POST'])
-
+```
 
 
 This app doesnt yet work. It is just some forms. (2017-04-21)
